@@ -33,8 +33,6 @@ httpd_handle_t camera_httpd = NULL;
 httpd_handle_t stream_httpd = NULL;
 
 void startCameraServer(){
-  Serial.print("TOP");
-
   httpd_config_t config = HTTPD_DEFAULT_CONFIG();
   config.server_port = 80;
   httpd_uri_t index_uri = {
@@ -68,7 +66,6 @@ void startCameraServer(){
 }
 
 void setup() {
-  Serial.print("TOPTOP");
   // WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); //disable brownout detector
 
   Serial.begin(115200);
