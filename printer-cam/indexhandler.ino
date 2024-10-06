@@ -2,7 +2,7 @@
 static const char PROGMEM INDEX_HTML[] = R"rawliteral(
 <html>
   <head>
-    <title>ESP32-CAM Robot</title>
+    <title>ESP32-CAM</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       body { font-family: Arial; text-align: center; margin:0px auto; padding-top: 30px;}
@@ -34,7 +34,6 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
     </style>
   </head>
   <body>
-    <h1>ESP32-CAM Pan and Tilt</h1>
     <img src="" id="photo" >
     <table>
       <tr>
