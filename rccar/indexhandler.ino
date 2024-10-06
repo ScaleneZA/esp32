@@ -34,15 +34,14 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
     </style>
   </head>
   <body>
-    <h1>ESP32-CAM Pan and Tilt</h1>
     <img src="" id="photo" >
     <table>
-      <tr><td colspan="3" align="center"><button class="button" onmousedown="toggleCheckbox('up');" ontouchstart="toggleCheckbox('up');">Up</button></td></tr>  
+      <tr><td colspan="3" align="center"><button class="button" onmouseup="toggleCheckbox('up-stop');" onmousedown="toggleCheckbox('up');" ontouchend="toggleCheckbox('up-stop');" ontouchstart="toggleCheckbox('up');">⬆️</button></td></tr>  
       <tr>
-        <td align="center"><button class="button" onmousedown="toggleCheckbox('left');" ontouchstart="toggleCheckbox('left');">Left</button></td>
-        <td align="center"><button class="button" onmousedown="toggleCheckbox('right');" ontouchstart="toggleCheckbox('right');">Right</button></td>
+        <td align="center"><button class="button" onmouseup="toggleCheckbox('left-stop');" onmousedown="toggleCheckbox('left');" ontouchend="toggleCheckbox('left-stop');" ontouchstart="toggleCheckbox('left');">⬅️</button></td>
+        <td align="center"><button class="button" onmouseup="toggleCheckbox('right-stop');" onmousedown="toggleCheckbox('right');" ontouchend="toggleCheckbox('right-stop');" ontouchstart="toggleCheckbox('right');">➡️</button></td>
       </tr>         
-      <tr><td colspan="3" align="center"><button class="button" onmousedown="toggleCheckbox('down');" ontouchstart="toggleCheckbox('down');">Down</button></td></tr>          
+      <tr><td colspan="3" align="center"><button class="button" onmouseup="toggleCheckbox('up-stop');" onmousedown="toggleCheckbox('down');" ontouchend="toggleCheckbox('up-stop');" ontouchstart="toggleCheckbox('down');">⬇️</button></td></tr>     
     </table>
    <script>
    function toggleCheckbox(x) {
@@ -50,6 +49,79 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
      xhr.open("GET", "/action?go=" + x, true);
      xhr.send();
    }
+
+  var up = false;
+  var down = false;
+  var left = false;
+  var right = false;
+
+  function KeyCheckDown() {
+    var KeyID = event.keyCode;
+
+    switch(KeyID) {
+      case 37:
+      if (left) {
+        break;
+      }
+      left = true;
+      toggleCheckbox("left");
+      break;
+      
+      case 38:
+      if (up) {
+        break;
+      }
+      up = true;
+      toggleCheckbox("up");
+      break
+
+      case 39:
+      if (right) {
+        break;
+      }
+      right = true;
+      toggleCheckbox("right");
+      break;
+
+      case 40:
+      if (down) {
+        break;
+      }
+      down = true;
+      toggleCheckbox("down");
+      break;   
+     }
+  }
+
+  function KeyCheckUp() {
+    var KeyID = event.keyCode;
+
+    switch(KeyID) {
+      case 37:
+      toggleCheckbox("left-stop");
+      left = false;
+      break;
+      
+      case 38:
+      toggleCheckbox("up-stop");
+      up = false;
+      break
+
+      case 39:
+      toggleCheckbox("right-stop");
+      right = false;
+      break;
+
+      case 40:
+      toggleCheckbox("down-stop");
+      down = false;
+      break;   
+     }
+  }
+
+   document.onkeydown = KeyCheckDown;
+   document.onkeyup = KeyCheckUp;
+
    window.onload = document.getElementById("photo").src = window.location.href.slice(0, -1) + ":81/stream";
   </script>
   </body>

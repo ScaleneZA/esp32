@@ -8,7 +8,15 @@
 const char* ssid = "Burgess";
 const char* password = "Jaywalker";
 
-#define RELAY 12
+int DRIVE_F_CYCLES = 0;
+int DRIVE_R_CYCLES = 0;
+int STEER_R_CYCLES = 0;
+int STEER_L_CYCLES = 0;
+
+#define DRIVE_F 12
+#define DRIVE_R 13
+#define STEER_R 14
+#define STEER_L 15
 
 #define PWDN_GPIO_NUM     32
 #define RESET_GPIO_NUM    -1
@@ -126,11 +134,22 @@ void setup() {
   // Start streaming web serverty
   startCameraServer();
   delay(500);
-  pinMode(RELAY, OUTPUT);
-  digitalWrite(RELAY, HIGH);
+
+  sensor_t * s = esp_camera_sensor_get();
+  //flip the camera vertically
+  s->set_vflip(s, 1);          // 0 = disable , 1 = enable
+  // mirror effect
+  s->set_hmirror(s, 1);          // 0 = disable , 1 = enable
+
+  pinMode(DRIVE_F, OUTPUT);
+  analogWrite(DRIVE_F, 0);
+  pinMode(DRIVE_R, OUTPUT);
+  analogWrite(DRIVE_R, 0);
+  pinMode(STEER_R, OUTPUT);
+  analogWrite(STEER_R, 0);
+  pinMode(STEER_L, OUTPUT);
+  analogWrite(STEER_L, 0);
 }
 
 void loop() {
-  Serial.print("LOOP");
-  delay(10000);
 }

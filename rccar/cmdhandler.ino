@@ -39,24 +39,36 @@ static esp_err_t cmd_handler(httpd_req_t *req){
   
   if(!strcmp(variable, "up")) {
     Serial.print("Going Forward");
-    digitalWrite(RELAY, LOW);
-    delay(1);
-    digitalWrite(RELAY, HIGH);
-  }else if(!strcmp(variable, "left")) {
+    analogWrite(DRIVE_R, 0);
+    analogWrite(DRIVE_F, 255);
+  } else if(!strcmp(variable, "left")) {
     Serial.print("Turning Left");
-    digitalWrite(RELAY, LOW);
-    delay(1);
-    digitalWrite(RELAY, HIGH);
-  }else if(!strcmp(variable, "right")) {
+    analogWrite(STEER_R, 0);
+    analogWrite(STEER_L, 255);
+  } else if(!strcmp(variable, "right")) {
     Serial.print("Turning Right");
-    digitalWrite(RELAY, LOW);
-    delay(1);
-    digitalWrite(RELAY, HIGH);
-  }else if(!strcmp(variable, "down")) {
+    analogWrite(STEER_L, 0);
+    analogWrite(STEER_R, 255);
+  } else if(!strcmp(variable, "down")) {
     Serial.print("Reversing");
-    digitalWrite(RELAY, LOW);
-    delay(1);
-    digitalWrite(RELAY, HIGH);
+    analogWrite(DRIVE_F, 0);
+    analogWrite(DRIVE_R, 255);
+  } else if(!strcmp(variable, "up-stop")) {
+    Serial.print("Breaking");
+    analogWrite(DRIVE_F, 0);
+    analogWrite(DRIVE_R, 0);
+  } else if(!strcmp(variable, "left-stop")) {
+    Serial.print("Turning Straight");
+    analogWrite(STEER_L, 0);
+    analogWrite(STEER_R, 0);
+  } else if(!strcmp(variable, "right-stop")) {
+    Serial.print("Turning Straight");
+    analogWrite(STEER_L, 0);
+    analogWrite(STEER_R, 0);
+  } else if(!strcmp(variable, "down-stop")) {
+    Serial.print("Breaking");
+    analogWrite(DRIVE_F, 0);
+    analogWrite(DRIVE_R, 0);
   } else {
     res = -1;
   }
