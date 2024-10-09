@@ -36,12 +36,12 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
   <body>
     <img src="" id="photo" >
     <table>
-      <tr><td colspan="3" align="center"><button class="button" onmouseup="toggleCheckbox('up-stop');" onmousedown="toggleCheckbox('up');" ontouchend="toggleCheckbox('up-stop');" ontouchstart="toggleCheckbox('up');">⬆️</button></td></tr>  
+      <tr><td colspan="3" align="center"><button class="button" onmouseup="toggleCheckbox('up-stop');" onmousedown="toggleCheckbox('up');" ontouchend="toggleCheckbox('up-stop');" ontouchstart="toggleCheckbox('up');">↑</button></td></tr>  
       <tr>
-        <td align="center"><button class="button" onmouseup="toggleCheckbox('left-stop');" onmousedown="toggleCheckbox('left');" ontouchend="toggleCheckbox('left-stop');" ontouchstart="toggleCheckbox('left');">⬅️</button></td>
-        <td align="center"><button class="button" onmouseup="toggleCheckbox('right-stop');" onmousedown="toggleCheckbox('right');" ontouchend="toggleCheckbox('right-stop');" ontouchstart="toggleCheckbox('right');">➡️</button></td>
+        <td align="center"><button class="button" onmouseup="toggleCheckbox('left-stop');" onmousedown="toggleCheckbox('left');" ontouchend="toggleCheckbox('left-stop');" ontouchstart="toggleCheckbox('left');">←</button></td>
+        <td align="center"><button class="button" onmouseup="toggleCheckbox('right-stop');" onmousedown="toggleCheckbox('right');" ontouchend="toggleCheckbox('right-stop');" ontouchstart="toggleCheckbox('right');">→</button></td>
       </tr>         
-      <tr><td colspan="3" align="center"><button class="button" onmouseup="toggleCheckbox('up-stop');" onmousedown="toggleCheckbox('down');" ontouchend="toggleCheckbox('up-stop');" ontouchstart="toggleCheckbox('down');">⬇️</button></td></tr>     
+      <tr><td colspan="3" align="center"><button class="button" onmouseup="toggleCheckbox('up-stop');" onmousedown="toggleCheckbox('down');" ontouchend="toggleCheckbox('up-stop');" ontouchstart="toggleCheckbox('down');">↓</button></td></tr>     
     </table>
    <script>
    function toggleCheckbox(x) {
